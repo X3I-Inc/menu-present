@@ -380,6 +380,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 16);
 
     window.addEventListener('scroll', optimizedScrollHandler);
+
+    // Demo video modal logic
+    function setupDemoModal() {
+        const demoButtons = document.querySelectorAll('a[href="#demo"].btn-secondary.btn-large');
+        const modal = document.getElementById('demo-modal');
+        const closeBtn = modal ? modal.querySelector('.demo-modal-close') : null;
+        const backdrop = modal ? modal.querySelector('.demo-modal-backdrop') : null;
+        const video = modal ? modal.querySelector('video') : null;
+
+        function openModal(e) {
+            e.preventDefault();
+            if (modal) {
+                modal.style.display = 'flex';
+                if (video) {
+                    video.currentTime = 0;
+                    video.play();
+                }
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeModal() {
+            if (modal) {
+                modal.style.display = 'none';
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+                document.body.style.overflow = '';
+            }
+        }
+        demoButtons.forEach(btn => btn.addEventListener('click', openModal));
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (backdrop) backdrop.addEventListener('click', closeModal);
+        // ESC key closes modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+    }
+    setupDemoModal();
 });
 
 // Add loading animation for page
