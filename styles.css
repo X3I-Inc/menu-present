@@ -1175,4 +1175,17 @@ section {
 
 .contact-form {
     padding: 32px 28px;
+}
+
+/* Ensure long email addresses wrap or break on small screens */
+.contact-details a {
+    word-break: break-all;
+    display: inline-block;
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .contact-details a {
+        font-size: 0.95em;
+    }
 } 
