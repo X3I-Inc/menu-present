@@ -83,20 +83,31 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-    (function(){
-        emailjs.init("EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS public key
-    })();
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        emailjs.sendForm('EMAILJS_SERVICE_ID', 'EMAILJS_TEMPLATE_ID', this)
-            .then(function() {
+        fetch('http://localhost:5000/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: this.name.value,
+                email: this.email.value,
+                message: this.message.value
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
                 alert('Thank you for contacting us! We will get back to you soon.');
-            }, function(error) {
-                alert('Oops! Something went wrong. Please try again.');
-            });
-        this.reset();
+            } else {
+                alert('Failed to send message. Please try again.');
+            }
+            this.reset();
+        })
+        .catch(() => {
+            alert('Failed to send message. Please try again.');
+            this.reset();
+        });
     });
     </script>
 </body>
