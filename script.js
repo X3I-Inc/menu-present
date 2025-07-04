@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(style);
 
     // Counter animation for stats
+    /*
     function animateCounter(element, target, duration = 1000) {
         let start = 0;
         const increment = target / (duration / 16);
@@ -144,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (heroSection) statsObserver.observe(heroSection);
     if (ctaSection) statsObserver.observe(ctaSection);
+    */
 
     // Add to cart functionality
     const addToCartButtons = document.querySelectorAll('.btn-primary[href="#order"]');
