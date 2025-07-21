@@ -1,5 +1,5 @@
 # MenuStand Pro - QR Code Menu Stands Landing Page
-Available at: https://menu-cursor.vercel.app/
+Available at: https://menu-cursor.vercel.app/ \n
 A modern, conversion-optimized landing page for selling QR code menu stands to restaurants. Features a stunning liquid glass design with the same premium color scheme as your original design.
 
 ## 🎨 Design Features
